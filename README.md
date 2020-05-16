@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/nschloe/tanh_sinh"><img alt="logo" src="https://nschloe.github.io/tanh_sinh/logo-tanh_sinh.svg" width="70%"></a>
+  <a href="https://github.com/nschloe/tanh_sinh"><img alt="logo" src="https://nschloe.github.io/tanh_sinh/logo-tanhsinh.svg" width="70%"></a>
 </p>
 
 [![gh-actions](https://img.shields.io/github/workflow/status/nschloe/tanh_sinh/ci?style=flat-square)](https://github.com/nschloe/tanh_sinh/actions?query=workflow%3Aci)
