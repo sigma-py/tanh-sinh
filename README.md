@@ -92,7 +92,7 @@ print(val)
 
 To run the unit tests, check out this repository and type
 ```
-pytest
+tox
 ```
 
 ### License
