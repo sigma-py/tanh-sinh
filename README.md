@@ -3,7 +3,6 @@
 [![gh-actions](https://img.shields.io/github/workflow/status/nschloe/tanh_sinh/ci?style=flat-square)](https://github.com/nschloe/tanh_sinh/actions?query=workflow%3Aci)
 [![codecov](https://img.shields.io/codecov/c/github/nschloe/tanh_sinh.svg?style=flat-square)](https://codecov.io/gh/nschloe/tanh_sinh)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat-square)](https://github.com/psf/black)
-[![awesome](https://img.shields.io/badge/awesome-yes-8209ba.svg?style=flat-square)](https://github.com/nschloe/tanh_sinh)
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/tanh_sinh.svg?style=flat-square)](https://pypi.org/pypi/tanh_sinh/)
 [![PyPi Version](https://img.shields.io/pypi/v/tanh_sinh.svg?style=flat-square)](https://pypi.org/project/tanh_sinh)
 [![GitHub stars](https://img.shields.io/github/stars/nschloe/tanh_sinh.svg?logo=github&label=Stars&logoColor=white&style=flat-square)](https://github.com/nschloe/tanh_sinh)
@@ -80,6 +79,14 @@ print(val)
 3.141592653589793
 3.1415926533203944
 ```
+
+### Relevant publications
+
+ * [Hidetosi Takahasi, Masatake Mori, Double Exponential Formulas for Numerical Integration, PM. RIMS, Kyoto Univ., 9 (1974), 721-741](https://doi.org/10.2977%2Fprims%2F1195192451)
+ * [Masatake Mori, Discovery of the double exponential transformation and its developments, Publications of the Research Institute for Mathematical Sciences, 41 (4): 897–935, ISSN 0034-5318](https://doi.org/10.2977/prims/1145474600)
+ * [David H. Bailey, Karthik Jeyabalan, and Xiaoye S. Li, Error function quadrature, Experiment. Math., Volume 14, Issue 3 (2005), 317-329](https://projecteuclid.org/euclid.em/1128371757)
+ * [David H. Bailey, Tanh-Sinh High-Precision Quadrature, 2006](https://www.davidhbailey.com/dhbpapers/dhb-tanh-sinh.pdf)
+
 
 ### Testing
 
