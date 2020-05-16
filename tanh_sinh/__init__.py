@@ -1,9 +1,4 @@
 from .__about__ import __version__
-from .cli import show
-from .main import solve
+from .main import integrate, integrate_lr
 
-__all__ = [
-    "__version__",
-    "solve",
-    "show",
-]
+__all__ = ["__version__", "integrate", "integrate_lr"]
