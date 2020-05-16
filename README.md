@@ -1,7 +1,6 @@
 # tanh_sinh
 
 [![gh-actions](https://img.shields.io/github/workflow/status/nschloe/tanh_sinh/ci?style=flat-square)](https://github.com/nschloe/tanh_sinh/actions?query=workflow%3Aci)
-[![codecov](https://img.shields.io/codecov/c/github/nschloe/tanh_sinh.svg?style=flat-square)](https://codecov.io/gh/nschloe/tanh_sinh)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat-square)](https://github.com/psf/black)
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/tanh_sinh.svg?style=flat-square)](https://pypi.org/pypi/tanh_sinh/)
 [![PyPi Version](https://img.shields.io/pypi/v/tanh_sinh.svg?style=flat-square)](https://pypi.org/project/tanh_sinh)
