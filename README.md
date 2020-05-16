@@ -18,7 +18,7 @@ integrated with _arbitrary_ precision.
 
 Install with
 ```
-pip install tanh_sinh
+pip install tanh-sinh
 ```
 and use it like
 ```python
@@ -58,7 +58,7 @@ If the function has a singularity at a boundary, it needs to be shifted such tha
 singularity is at 0. (This is to avoid round-off errors for points that are very close
 to the singularity.)
 If there are singularities at both ends, the function can be shifted both ways and be
-handed off to `tanh_sinh_lr`; For example, for the function `1 / sqrt(1 - x**2)`, this
+handed off to `integrate_lr`; For example, for the function `1 / sqrt(1 - x**2)`, this
 gives
 ```python
 import numpy
