@@ -1,8 +1,8 @@
-# tanhsinh contributing guidelines
+# tanh_sinh contributing guidelines
 
-The tanhsinh community appreciates your contributions via issues and
+The tanh_sinh community appreciates your contributions via issues and
 pull requests.  Note that the [code of conduct](CODE_OF_CONDUCT.md)
-applies to all interactions with the tanhsinh project, including
+applies to all interactions with the tanh_sinh project, including
 issues and pull requests.
 
 When submitting pull requests, please follow the style guidelines of

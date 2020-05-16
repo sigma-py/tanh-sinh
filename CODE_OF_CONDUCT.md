@@ -1,4 +1,4 @@
-# tanhsinh Code of Conduct
+# tanh_sinh Code of Conduct
 
 ## Our Pledge
 
