@@ -253,6 +253,8 @@ def integrate_lr(f_left, f_right, alpha, eps, max_steps=10, mode="numpy"):
                 eps, value_estimates, lsummands, rsummands
             )
 
+        print(error_estimate)
+
         if abs(error_estimate) < eps:
             success = True
             break
