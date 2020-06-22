@@ -63,14 +63,12 @@ def test_tanh_sinh(f, a, b, exact):
     tol2 = 10 ** (-mp.dps + 1)
 
     t = sympy.Symbol("t")
-    f_derivatives = {
+    df = {
         1: sympy.lambdify(t, sympy.diff(f(t), t, 1), modules=["mpmath"]),
         2: sympy.lambdify(t, sympy.diff(f(t), t, 2), modules=["mpmath"]),
     }
 
-    value, _ = tanh_sinh.integrate(
-        f, a, b, tol, f_derivatives=f_derivatives, mode="mpmath"
-    )
+    value, _ = tanh_sinh.integrate(f, a, b, tol, df=df, mode="mpmath")
     assert abs(value - exact) < tol2
 
     # test with crude estimate
@@ -85,7 +83,7 @@ def test_tanh_sinh_numpy(f, a, b, exact):
     tol2 = 1.0e-13
 
     t = sympy.Symbol("t")
-    f_derivatives = {
+    df = {
         1: sympy.lambdify(t, sympy.diff(f(t), t, 1), modules=["numpy"]),
         2: sympy.lambdify(t, sympy.diff(f(t), t, 2), modules=["numpy"]),
     }
@@ -94,7 +92,7 @@ def test_tanh_sinh_numpy(f, a, b, exact):
     a = float(a)
     b = float(b)
 
-    value, _ = tanh_sinh.integrate(f, a, b, tol, f_derivatives=f_derivatives)
+    value, _ = tanh_sinh.integrate(f, a, b, tol, df=df)
     assert abs(value - exact) < tol2
 
     # test with crude estimate
@@ -109,7 +107,7 @@ def test_tanh_sinh_numpy_example():
         0,
         numpy.pi / 2,
         tol,
-        # f_derivatives={
+        # df={
         #     1: lambda x: numpy.exp(x) * (numpy.cos(x) - numpy.sin(x)),
         #     2: lambda x: -2 * numpy.exp(x) * numpy.sin(x),
         # },
@@ -167,7 +165,7 @@ def test_singularities_at_both_ends(f_left, f_right, b, exact):
         2: sympy.lambdify(t, sympy.diff(f_left(t), t, 2), modules=["mpmath"]),
     }
     value0, _ = tanh_sinh.integrate(
-        f_left, 0.0, b / 2, tol / 2, f_derivatives=deriv, mode="mpmath"
+        f_left, 0.0, b / 2, tol / 2, df=deriv, mode="mpmath"
     )
 
     deriv = {
@@ -175,7 +173,7 @@ def test_singularities_at_both_ends(f_left, f_right, b, exact):
         2: sympy.lambdify(t, sympy.diff(f_right(t), t, 2), modules=["mpmath"]),
     }
     value1, _ = tanh_sinh.integrate(
-        f_right, 0.0, b / 2, tol / 2, f_derivatives=deriv, mode="mpmath"
+        f_right, 0.0, b / 2, tol / 2, df=deriv, mode="mpmath"
     )
 
     value = value0 + value1
@@ -198,15 +196,13 @@ def test_low_precision(f, a, b, exact):
     mp.dps = 10
 
     t = sympy.Symbol("t")
-    f_derivatives = {
+    df = {
         1: sympy.lambdify(t, sympy.diff(f(t), t, 1), modules=["mpmath"]),
         2: sympy.lambdify(t, sympy.diff(f(t), t, 2), modules=["mpmath"]),
     }
 
     tol = 1.0e-2
-    value, _ = tanh_sinh.integrate(
-        f, a, b, tol, f_derivatives=f_derivatives, mode="mpmath"
-    )
+    value, _ = tanh_sinh.integrate(f, a, b, tol, df=df, mode="mpmath")
     assert abs(value - exact) < tol
 
 

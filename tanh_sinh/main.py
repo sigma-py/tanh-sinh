@@ -5,7 +5,7 @@ import scipy.special
 from mpmath import mp
 
 
-def integrate(f, a, b, eps, max_steps=10, f_derivatives=None, mode="numpy"):
+def integrate(f, a, b, eps, max_steps=10, df=None, mode="numpy"):
     """Integrate a function `f` between `a` and `b` with accuracy `eps`.
 
     For more details, see
@@ -23,20 +23,20 @@ def integrate(f, a, b, eps, max_steps=10, f_derivatives=None, mode="numpy"):
     doi:10.2977/prims/1145474600,
     <http://www.kurims.kyoto-u.ac.jp/~okamoto/paper/Publ_RIMS_DE/41-4-38.pdf>.
     """
-    if f_derivatives is None:
-        f_derivatives = {}
+    if df is None:
+        df = {}
 
     f_left = {0: lambda s: f(a + s)}
-    if 1 in f_derivatives:
-        f_left[1] = lambda s: f_derivatives[1](a + s)
-    if 2 in f_derivatives:
-        f_left[2] = lambda s: f_derivatives[2](a + s)
+    if 1 in df:
+        f_left[1] = lambda s: df[1](a + s)
+    if 2 in df:
+        f_left[2] = lambda s: df[2](a + s)
 
     f_right = {0: lambda s: f(b - s)}
-    if 1 in f_derivatives:
-        f_right[1] = lambda s: -f_derivatives[1](b - s)
-    if 2 in f_derivatives:
-        f_right[2] = lambda s: +f_derivatives[2](b - s)
+    if 1 in df:
+        f_right[1] = lambda s: -df[1](b - s)
+    if 2 in df:
+        f_right[2] = lambda s: +df[2](b - s)
 
     value_estimate, error_estimate = integrate_lr(
         f_left, f_right, b - a, eps, max_steps=max_steps, mode=mode
