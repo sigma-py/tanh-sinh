@@ -2,13 +2,17 @@
   <a href="https://github.com/nschloe/tanh_sinh"><img alt="logo" src="https://nschloe.github.io/tanh_sinh/logo-tanhsinh.svg" width="60%"></a>
 </p>
 
-[![gh-actions](https://img.shields.io/github/workflow/status/nschloe/tanh_sinh/ci?style=flat-square)](https://github.com/nschloe/tanh_sinh/actions?query=workflow%3Aci)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat-square)](https://github.com/psf/black)
-[![PyPI pyversions](https://img.shields.io/pypi/pyversions/tanh_sinh.svg?style=flat-square)](https://pypi.org/pypi/tanh_sinh/)
 [![PyPi Version](https://img.shields.io/pypi/v/tanh_sinh.svg?style=flat-square)](https://pypi.org/project/tanh_sinh)
-[![GitHub stars](https://img.shields.io/github/stars/nschloe/tanh_sinh.svg?logo=github&label=Stars&logoColor=white&style=flat-square)](https://github.com/nschloe/tanh_sinh)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/tanh_sinh.svg?style=flat-square)](https://pypi.org/pypi/tanh_sinh/)
+[![GitHub stars](https://img.shields.io/github/stars/nschloe/tanh_sinh.svg?style=flat-square&logo=github&label=Stars&logoColor=white)](https://github.com/nschloe/tanh_sinh)
 [![PyPi downloads](https://img.shields.io/pypi/dm/tanh_sinh.svg?style=flat-square)](https://pypistats.org/packages/tanh_sinh)
 
+[![Discord](https://img.shields.io/static/v1?logo=discord&label=chat&message=on%20discord&color=7289da&style=flat-square)](https://discord.gg/Z6DMsJh4Hr)
+
+[![gh-actions](https://img.shields.io/github/workflow/status/nschloe/tanh_sinh/ci?style=flat-square)](https://github.com/nschloe/tanh_sinh/actions?query=workflow%3Aci)
+[![codecov](https://img.shields.io/codecov/c/github/nschloe/tanh_sinh.svg?style=flat-square)](https://codecov.io/gh/nschloe/tanh_sinh)
+[![LGTM](https://img.shields.io/lgtm/grade/python/github/nschloe/tanh_sinh.svg?style=flat-square)](https://lgtm.com/projects/g/nschloe/tanh_sinh)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat-square)](https://github.com/psf/black)
 
 The rather modern tanh-sinh quadrature is different from classical Gaussian integration
 methods in that it doesn't integrate any function exactly, not even polynomials of low
