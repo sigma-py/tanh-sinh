@@ -52,9 +52,10 @@ mp.dps = 50
 
 val, error_estimate = tanh_sinh.integrate(
     lambda x: mp.exp(x) * sympy.cos(x),
-    0, mp.pi/2,
+    0,
+    mp.pi / 2,
     1.0e-50,  # !
-    mode="mpmath"
+    mode="mpmath",
 )
 ```
 
@@ -72,10 +73,10 @@ import tanh_sinh
 #    return 1 / numpy.sqrt(1 - x ** 2)
 
 val, error_estimate = tanh_sinh.integrate_lr(
-    [lambda x: 1 / numpy.sqrt(-x**2 + 2*x)],  # = 1 / sqrt(1 - (x-1)**2)
-    [lambda x: 1 / numpy.sqrt(-x**2 + 2*x)],  # = 1 / sqrt(1 - (-(x-1))**2)
+    [lambda x: 1 / numpy.sqrt(-(x ** 2) + 2 * x)],  # = 1 / sqrt(1 - (x-1)**2)
+    [lambda x: 1 / numpy.sqrt(-(x ** 2) + 2 * x)],  # = 1 / sqrt(1 - (-(x-1))**2)
     2,  # length of the interval
-    1.0e-10
+    1.0e-10,
 )
 print(numpy.pi)
 print(val)
