@@ -159,6 +159,9 @@ def integrate_lr(
     error_estimate = None
     value_estimates = None
 
+    fun_left = f_left if callable(f_left) else f_left[0]
+    fun_right = f_right if callable(f_right) else f_right[0]
+
     success = False
     for level in range(max_steps + 1):
         # We would like to calculate the weights until they are smaller than tau, i.e.,
@@ -229,12 +232,12 @@ def integrate_lr(
         weights = -h * y1
 
         if mode == "mpmath":
-            fly = np.array([f_left[0](yy) for yy in y0])
-            fry = np.array([f_right[0](yy) for yy in y0])
+            fly = np.array([fun_left(yy) for yy in y0])
+            fry = np.array([fun_right(yy) for yy in y0])
         else:
             assert mode == "numpy"
-            fly = f_left[0](y0)
-            fry = f_right[0](y0)
+            fly = fun_left(y0)
+            fry = fun_right(y0)
 
         lsummands = fly * weights
         rsummands = fry * weights
