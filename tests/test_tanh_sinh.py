@@ -162,16 +162,16 @@ def test_singularities_at_both_ends(f_left, f_right, b, exact):
     tol = 10 ** (-mp.dps)
 
     t = sympy.Symbol("t")
-    fl = {
-        0: f_left,
-        1: sympy.lambdify(t, sympy.diff(f_left(t), t, 1), modules=["mpmath"]),
-        2: sympy.lambdify(t, sympy.diff(f_left(t), t, 2), modules=["mpmath"]),
-    }
-    fr = {
-        0: f_right,
-        1: sympy.lambdify(t, sympy.diff(f_right(t), t, 1), modules=["mpmath"]),
-        2: sympy.lambdify(t, sympy.diff(f_right(t), t, 2), modules=["mpmath"]),
-    }
+    fl = (
+        f_left,
+        sympy.lambdify(t, sympy.diff(f_left(t), t, 1), modules=["mpmath"]),
+        sympy.lambdify(t, sympy.diff(f_left(t), t, 2), modules=["mpmath"]),
+    )
+    fr = (
+        f_right,
+        sympy.lambdify(t, sympy.diff(f_right(t), t, 1), modules=["mpmath"]),
+        sympy.lambdify(t, sympy.diff(f_right(t), t, 2), modules=["mpmath"]),
+    )
 
     value, _ = tanh_sinh.integrate_lr(fl, fr, b, tol, mode="mpmath")
     tol2 = 10 ** (-mp.dps + 1)

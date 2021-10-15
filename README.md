@@ -79,8 +79,8 @@ import tanh_sinh
 #    return 1 / numpy.sqrt(1 - x ** 2)
 
 val, error_estimate = tanh_sinh.integrate_lr(
-    [lambda x: 1 / numpy.sqrt(-(x ** 2) + 2 * x)],  # = 1 / sqrt(1 - (x-1)**2)
-    [lambda x: 1 / numpy.sqrt(-(x ** 2) + 2 * x)],  # = 1 / sqrt(1 - (-(x-1))**2)
+    lambda x: 1 / numpy.sqrt(-(x ** 2) + 2 * x),  # = 1 / sqrt(1 - (x-1)**2)
+    lambda x: 1 / numpy.sqrt(-(x ** 2) + 2 * x),  # = 1 / sqrt(1 - (-(x-1))**2)
     2,  # length of the interval
     1.0e-10,
 )

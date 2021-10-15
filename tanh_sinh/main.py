@@ -15,7 +15,7 @@ def integrate(
     b: float,
     eps: float,
     max_steps: int = 10,
-    f_derivatives: list[int, Callable] | None = None,
+    f_derivatives: dict[int, Callable] | None = None,
     mode: str = "numpy",
 ):
     """Integrate a function `f` between `a` and `b` with accuracy `eps`.
@@ -36,19 +36,24 @@ def integrate(
     <http://www.kurims.kyoto-u.ac.jp/~okamoto/paper/Publ_RIMS_DE/41-4-38.pdf>.
     """
     if f_derivatives is None:
-        f_derivatives = {}
 
-    f_left = {0: lambda s: f(a + s)}
-    if 1 in f_derivatives:
-        f_left[1] = lambda s: f_derivatives[1](a + s)
-    if 2 in f_derivatives:
-        f_left[2] = lambda s: f_derivatives[2](a + s)
+        def f_left(s):
+            return f(a + s)
 
-    f_right = {0: lambda s: f(b - s)}
-    if 1 in f_derivatives:
-        f_right[1] = lambda s: -f_derivatives[1](b - s)
-    if 2 in f_derivatives:
-        f_right[2] = lambda s: +f_derivatives[2](b - s)
+        def f_right(s):
+            return f(b - s)
+
+    else:
+        f_left = (
+            lambda s: f(a + s),
+            lambda s: f_derivatives[1](a + s),
+            lambda s: f_derivatives[2](a + s),
+        )
+        f_right = (
+            lambda s: +f(b - s),
+            lambda s: -f_derivatives[1](b - s),
+            lambda s: +f_derivatives[2](b - s),
+        )
 
     value_estimate, error_estimate = integrate_lr(
         f_left, f_right, b - a, eps, max_steps=max_steps, mode=mode
@@ -258,8 +263,8 @@ def integrate_lr(
             )
 
         # error estimation
-        if 1 in f_left and 2 in f_left:
-            assert 1 in f_right and 2 in f_right
+        if isinstance(f_left, tuple):
+            assert isinstance(f_right, tuple)
             error_estimate = _error_estimate1(
                 h,
                 sinh_t,
@@ -277,6 +282,9 @@ def integrate_lr(
             )
             last_error_estimate = error_estimate
         else:
+            # TODO remove assertion
+            assert callable(f_left)
+            assert callable(f_right)
             error_estimate = _error_estimate2(
                 eps, value_estimates, lsummands, rsummands
             )
