@@ -1,11 +1,22 @@
+from __future__ import annotations
+
 import math
+from typing import Callable
 
 import numpy
 import scipy.special
 from mpmath import mp
 
 
-def integrate(f, a, b, eps, max_steps=10, f_derivatives=None, mode="numpy"):
+def integrate(
+    f: Callable,
+    a: float,
+    b: float,
+    eps: float,
+    max_steps: int = 10,
+    f_derivatives: dict[int, Callable] | None = None,
+    mode: str = "numpy",
+):
     """Integrate a function `f` between `a` and `b` with accuracy `eps`.
 
     For more details, see
@@ -44,7 +55,14 @@ def integrate(f, a, b, eps, max_steps=10, f_derivatives=None, mode="numpy"):
     return value_estimate, error_estimate
 
 
-def integrate_lr(f_left, f_right, alpha, eps, max_steps=10, mode="numpy"):
+def integrate_lr(
+    f_left: list[Callable],
+    f_right: list[Callable],
+    alpha: float,
+    eps: float,
+    max_steps: int = 10,
+    mode: str = "numpy",
+):
     """Integrate a function `f` between `a` and `b` with accuracy `eps`. The function
     `f` is given in terms of two functions
 
