@@ -30,17 +30,17 @@ and use it like
 
 ```python
 import tanh_sinh
-import numpy
+import numpy as np
 
 val, error_estimate = tanh_sinh.integrate(
-    lambda x: numpy.exp(x) * numpy.cos(x),
+    lambda x: np.exp(x) * np.cos(x),
     0,
-    numpy.pi / 2,
+    np.pi / 2,
     1.0e-14,
     # Optional: Specify first and second derivative for better error estimation
     # f_derivatives={
-    #     1: lambda x: numpy.exp(x) * (numpy.cos(x) - numpy.sin(x)),
-    #     2: lambda x: -2 * numpy.exp(x) * numpy.sin(x),
+    #     1: lambda x: np.exp(x) * (np.cos(x) - np.sin(x)),
+    #     2: lambda x: -2 * np.exp(x) * np.sin(x),
     # },
 )
 ```

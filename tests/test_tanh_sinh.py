@@ -1,4 +1,4 @@
-import numpy
+import numpy as np
 import pytest
 import sympy
 from mpmath import mp
@@ -8,8 +8,8 @@ import tanh_sinh
 mp.dps = 50
 
 test_cases = [
-    (lambda t: 1, -1, +1, 2),
-    (lambda t: 1, 0, +5, 5),
+    (lambda _: 1, -1, +1, 2),
+    (lambda _: 1, 0, +5, 5),
     (lambda t: t, -0, +1, sympy.Rational(1, 2)),
     (lambda t: t ** 2, -1, +1, sympy.Rational(2, 3)),
     # Bailey example 1:
@@ -104,17 +104,17 @@ def test_tanh_sinh_numpy(f, a, b, exact):
 
 def test_tanh_sinh_numpy_example():
     tol = 1.0e-14
-    val, error_estimate = tanh_sinh.integrate(
-        lambda x: numpy.exp(x) * numpy.cos(x),
+    val, _ = tanh_sinh.integrate(
+        lambda x: np.exp(x) * np.cos(x),
         0,
-        numpy.pi / 2,
+        np.pi / 2,
         tol,
         # f_derivatives={
-        #     1: lambda x: numpy.exp(x) * (numpy.cos(x) - numpy.sin(x)),
-        #     2: lambda x: -2 * numpy.exp(x) * numpy.sin(x),
+        #     1: lambda x: np.exp(x) * (np.cos(x) - np.sin(x)),
+        #     2: lambda x: -2 * np.exp(x) * np.sin(x),
         # },
     )
-    exact = (numpy.exp(numpy.pi / 2) - 1) / 2
+    exact = (np.exp(np.pi / 2) - 1) / 2
 
     assert abs(val - exact) < tol
 
