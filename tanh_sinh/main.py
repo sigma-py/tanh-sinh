@@ -36,11 +36,14 @@ def integrate(
     """
     if callable(f):
 
-        def f_left(s):
+        def f_left_c(s):
             return f(a + s)
 
-        def f_right(s):
+        def f_right_c(s):
             return f(b - s)
+
+        f_left = f_left_c
+        f_right = f_right_c
 
     else:
         assert len(f) == 3
@@ -263,8 +266,11 @@ def integrate_lr(
             )
 
         # error estimation
-        if isinstance(f_left, tuple):
-            assert isinstance(f_right, tuple)
+        if callable(f_left):
+            error_estimate = _error_estimate2(
+                eps, value_estimates, lsummands, rsummands
+            )
+        else:
             error_estimate = _error_estimate1(
                 h,
                 sinh_t,
@@ -281,13 +287,6 @@ def integrate_lr(
                 mode,
             )
             last_error_estimate = error_estimate
-        else:
-            # TODO remove assertion
-            assert callable(f_left)
-            assert callable(f_right)
-            error_estimate = _error_estimate2(
-                eps, value_estimates, lsummands, rsummands
-            )
 
         if abs(error_estimate) < eps:
             success = True
