@@ -88,6 +88,7 @@ print(numpy.pi)
 print(val)
 ```
 
+<!--pytest-codeblocks:expected-output--->
 ```
 3.141592653589793
 3.1415926533203944
