@@ -10,12 +10,11 @@ from mpmath import mp
 
 
 def integrate(
-    f: Callable,
+    f: Callable | tuple[Callable, Callable, Callable],
     a: float,
     b: float,
     eps: float,
     max_steps: int = 10,
-    f_derivatives: dict[int, Callable] | None = None,
     mode: str = "numpy",
 ):
     """Integrate a function `f` between `a` and `b` with accuracy `eps`.
@@ -35,7 +34,7 @@ def integrate(
     doi:10.2977/prims/1145474600,
     <http://www.kurims.kyoto-u.ac.jp/~okamoto/paper/Publ_RIMS_DE/41-4-38.pdf>.
     """
-    if f_derivatives is None:
+    if callable(f):
 
         def f_left(s):
             return f(a + s)
@@ -44,15 +43,16 @@ def integrate(
             return f(b - s)
 
     else:
+        assert len(f) == 3
         f_left = (
-            lambda s: f(a + s),
-            lambda s: f_derivatives[1](a + s),
-            lambda s: f_derivatives[2](a + s),
+            lambda s: f[0](a + s),
+            lambda s: f[1](a + s),
+            lambda s: f[2](a + s),
         )
         f_right = (
-            lambda s: +f(b - s),
-            lambda s: -f_derivatives[1](b - s),
-            lambda s: +f_derivatives[2](b - s),
+            lambda s: +f[0](b - s),
+            lambda s: -f[1](b - s),
+            lambda s: +f[2](b - s),
         )
 
     value_estimate, error_estimate = integrate_lr(
