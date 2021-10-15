@@ -21,10 +21,13 @@ functions, even seemingly difficult ones with (integrable) singularities, can be
 integrated with _arbitrary_ precision.
 
 Install with
+
 ```
 pip install tanh-sinh
 ```
+
 and use it like
+
 ```python
 import tanh_sinh
 import numpy
@@ -41,8 +44,10 @@ val, error_estimate = tanh_sinh.integrate(
     # },
 )
 ```
+
 If you want more digits, use [mpmath](http://mpmath.org/) for arbitrary precision
 arithmetic:
+
 ```python
 import tanh_sinh
 from mpmath import mp
@@ -65,6 +70,7 @@ to the singularity.)
 If there are singularities at both ends, the function can be shifted both ways and be
 handed off to `integrate_lr`; For example, for the function `1 / sqrt(1 - x**2)`, this
 gives
+
 ```python
 import numpy
 import tanh_sinh
@@ -81,6 +87,7 @@ val, error_estimate = tanh_sinh.integrate_lr(
 print(numpy.pi)
 print(val)
 ```
+
 ```
 3.141592653589793
 3.1415926533203944
@@ -88,18 +95,19 @@ print(val)
 
 ### Relevant publications
 
- * [Hidetosi Takahasi, Masatake Mori, Double Exponential Formulas for Numerical Integration, PM. RIMS, Kyoto Univ., 9 (1974), 721-741](https://doi.org/10.2977%2Fprims%2F1195192451)
- * [Masatake Mori, Discovery of the double exponential transformation and its developments, Publications of the Research Institute for Mathematical Sciences, 41 (4): 897–935, ISSN 0034-5318](https://doi.org/10.2977/prims/1145474600)
- * [David H. Bailey, Karthik Jeyabalan, and Xiaoye S. Li, Error function quadrature, Experiment. Math., Volume 14, Issue 3 (2005), 317-329](https://projecteuclid.org/euclid.em/1128371757)
- * [David H. Bailey, Tanh-Sinh High-Precision Quadrature, 2006](https://www.davidhbailey.com/dhbpapers/dhb-tanh-sinh.pdf)
-
+- [Hidetosi Takahasi, Masatake Mori, Double Exponential Formulas for Numerical Integration, PM. RIMS, Kyoto Univ., 9 (1974), 721-741](https://doi.org/10.2977%2Fprims%2F1195192451)
+- [Masatake Mori, Discovery of the double exponential transformation and its developments, Publications of the Research Institute for Mathematical Sciences, 41 (4): 897–935, ISSN 0034-5318](https://doi.org/10.2977/prims/1145474600)
+- [David H. Bailey, Karthik Jeyabalan, and Xiaoye S. Li, Error function quadrature, Experiment. Math., Volume 14, Issue 3 (2005), 317-329](https://projecteuclid.org/euclid.em/1128371757)
+- [David H. Bailey, Tanh-Sinh High-Precision Quadrature, 2006](https://www.davidhbailey.com/dhbpapers/dhb-tanh-sinh.pdf)
 
 ### Testing
 
 To run the unit tests, check out this repository and type
+
 ```
 tox
 ```
 
 ### License
+
 This software is published under the [GPLv3 license](https://www.gnu.org/licenses/gpl-3.0.en.html).
