@@ -57,8 +57,8 @@ def integrate(
 
 
 def integrate_lr(
-    f_left: list[Callable],
-    f_right: list[Callable],
+    f_left: Callable | tuple[Callable, Callable, Callable],
+    f_right: Callable | tuple[Callable, Callable, Callable],
     alpha: float,
     eps: float,
     max_steps: int = 10,
@@ -96,10 +96,12 @@ def integrate_lr(
         assert mode == "numpy"
         kernel = np
 
-        def lambertw(x, k):
+        def lambertw_scipy(x, k):
             out = scipy.special.lambertw(x, k)
             assert abs(out.imag) < 1.0e-15
             return scipy.special.lambertw(x, k).real
+
+        lambertw = lambertw_scipy
 
         ln = np.log
         fsum = math.fsum
@@ -296,8 +298,8 @@ def _error_estimate1(
     y1,
     fly,
     fry,
-    f_left: list[Callable],
-    f_right: list[Callable],
+    f_left: tuple[Callable, Callable, Callable],
+    f_right: tuple[Callable, Callable, Callable],
     alpha: float,
     last_estimate: float | None,
     mode: str,
